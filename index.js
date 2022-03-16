@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 
 app.get("/" ,(req,res) => {
-    res.send("<h2> hi There</h2>")
+    res.send("<h2> Hello There Node and docker-compose</h2>")
 })
 
 const port = process.env.PORT || 3000;
