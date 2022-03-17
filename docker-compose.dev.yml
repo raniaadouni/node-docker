@@ -10,4 +10,10 @@ services:
    #   - /app/node_modules
     environment:
       - NODE_ENV=development
+      - MONGO_USER=adouni
+      - MONGO_PASSWORD=mypassword
     command: npm run dev
+  mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=adouni
+      - MONGO_INITDB_ROOT_PASSWORD=mypassword
