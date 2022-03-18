@@ -8,8 +8,9 @@ exports.getAllPosts = async (req, res, next ) => {
             status: "succes",
             results: posts.length,
             data: {
-                posts
-            }
+                posts,
+
+            },
         })         
     } catch (e) {
         res.status(400).json({
@@ -26,8 +27,8 @@ exports.getOnPost = async (req, res, next ) => {
         res.status(200).json({
             status: "succes",
             data: {
-                post
-            }
+                post,
+            },
         })         
     } catch (e) {
         res.status(400).json({
@@ -38,15 +39,15 @@ exports.getOnPost = async (req, res, next ) => {
 
 exports.createPost = async (req, res, next ) => {
     try {
+        console.log(req.body)
         const post = await Post.create(req.body)
 
-        res.status(200).json({
-            status: "succes",
-            data: {
-                post
-            }
-        })         
+        res.status(200).json(
+            //status: "succes",
+            post
+        )         
     } catch (e) {
+       // console.log(e)
         res.status(400).json({
             status: 'fail',
         })
@@ -63,8 +64,8 @@ exports.updatePost = async (req, res, next ) => {
         res.status(200).json({
             status: "succes",
             data: {
-                post
-            }
+                post,
+            },
         })         
     } catch (e) {
         res.status(400).json({
