@@ -47,6 +47,9 @@ connectWithRetry();
 app.get(express.json())
 app.use(bodyParser.json()) 
 
+//express behind proxies
+app.enable("trust proxy")
+
 //Configure session middleware
 app.use(
     session({
@@ -62,12 +65,9 @@ app.use(
 
     }))
 
-
-
-
-
-app.get("/" ,(req,res) => {
+app.get("/api" ,(req,res) => {
     res.send("<h2> Hello There Node and docker-compose</h2>")
+    console.log("hello again")
 })
 
 app.use("/api/posts", postRouter)

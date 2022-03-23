@@ -34,13 +34,14 @@ exports.getAllUsers = async (req, res) => {
     try {
 
         const users = await User.find();
-        res.status(200).json ({
-            status: "succes",
-            results: users.length,
-            data: {
-                users
-            }
-        })
+        // res.status(200).json ({
+        //     status: "succes",
+        //     results: users.length,
+        //     data: {
+        //         users
+        //     }
+        // })
+        return res.status(200).json(users);
     } catch (e) {
         res.status(404).json ({
             status: 'fail'
