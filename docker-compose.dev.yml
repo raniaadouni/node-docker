@@ -1,5 +1,8 @@
 version: "3"
 services:
+  nginx:
+     ports:
+      - 8080:80
   node-app:
     build: 
       context: .
@@ -11,9 +14,7 @@ services:
     environment:
       - NODE_ENV=development
       - MONGO_USER=adouni
-      - MONGO_PASSWORD=mypassword
-      #- REDIS_IP=redis-cache
-      #- REDIS_PORT=6379
+      - MONGO_PASSWORD=mypassword 
       - SESSION_SECRET= secret
     command: npm run dev
   mongo:

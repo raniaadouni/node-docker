@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require('mongoose');
 let bodyParser = require("body-parser")
 const session = require("express-session")
+const cors = require("cors")
 //const cookieParser = require("cookie-parser")
 
 let RedisStore = require("connect-redis")(session)
@@ -29,6 +30,7 @@ const postRouter = require('./routes/postRoutes')
 const userRouter = require('./routes/userRoutes')
 
 const app = express()
+app.use(cors())
 const mongoURL= `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`
 
 const connectWithRetry = () => {
@@ -47,6 +49,9 @@ connectWithRetry();
 app.get(express.json())
 app.use(bodyParser.json()) 
 
+//express behind proxies
+app.enable("trust proxy")
+
 //Configure session middleware
 app.use(
     session({
@@ -62,12 +67,9 @@ app.use(
 
     }))
 
-
-
-
-
-app.get("/" ,(req,res) => {
-    res.send("<h2> Hello There Node and docker-compose</h2>")
+app.get("/api" ,(req,res) => {
+    res.status(200).json({ message: "hello from backend" });
+    console.log("hello again")
 })
 
 app.use("/api/posts", postRouter)
