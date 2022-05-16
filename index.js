@@ -69,7 +69,6 @@ app.use(
 
 app.get("/api" ,(req,res) => {
     res.status(200).json({ message: "hello from backend" });
-    console.log("hello again")
 })
 
 app.use("/api/posts", postRouter)
